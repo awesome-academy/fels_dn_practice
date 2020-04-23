@@ -15,12 +15,14 @@ Route::get('/', function () {
     return view('master');
 });
 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
 /*Admin */
 Route::get('admin', function () {
     return view('admin.home');
-});
-Route::get('admin/categories', function (){
-    return view('admin.categories.show');
 });
 Route::get('admin/register', function (){
     return view('admin.register');
@@ -30,18 +32,11 @@ Route::get('admin/login', function (){
 });
 
 /*Admin Categories*/
-Route::get('/categories/add', function (){
-    return view('admin.categories.create');
-});
-Route::get('/categories/all', function (){
-    return view('admin.categories.show');
-});
-Route::get('/categories/edit', function (){
-    return view('admin.categories.edit');
-});
-Route::delete('categories/{id}','CategoryController@destroy');
+
+Route::resource('categories','CategoryController');
 
 /*Admin Lessions*/
+
 Route::get('/lessions/add', function (){
     return view('admin.lessions.create');
 });
@@ -53,6 +48,7 @@ Route::get('/lessions/edit', function (){
 });
 
 /*Words Lessions*/
+
 Route::get('/words/add', function (){
     return view('admin.words.create');
 });
@@ -62,4 +58,3 @@ Route::get('/words/all', function (){
 Route::get('/words/edit', function (){
     return view('admin.words.edit');
 });
-
