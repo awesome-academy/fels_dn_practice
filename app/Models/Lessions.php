@@ -10,9 +10,10 @@ class Lessions extends Model
         'category',
         'user_id',
         'result',
+        'name' ,
     ];
 
-    public function user() 
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
