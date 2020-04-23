@@ -8,4 +8,5 @@ return[
     'filter' => 'Filter',
     'search' => 'Search',
     'action' => 'Action',
+    'result' => 'Result',
 ];

@@ -9,6 +9,7 @@ class Words extends Model
     protected $fillable = [
         'category_id',
         'content',
+        'name' ,
     ];
 
     public function category()
