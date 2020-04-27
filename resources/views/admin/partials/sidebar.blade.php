@@ -15,12 +15,12 @@
                         <span>{{ trans('admin/partials/sidebar.cat') }}</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="{{url('categories/all')}}">{{ trans('admin/partials/sidebar.list_cat') }}</a></li>
-                        <li><a href="{{url('categories/add')}}">{{ trans('admin/partials/sidebar.add_cat') }}</a></li>
-                        <li><a href="{{url('categories/edit')}}">{{ trans('admin/partials/sidebar.edit_cat') }}</a></li>
+                        <li><a href="{{ route('categories.index') }}">{{ trans('admin/partials/sidebar.list_cat') }}</a></li>
+                        <li><a href="{{ route('categories.create') }}">{{ trans('admin/partials/sidebar.add_cat') }}</a></li>
+                        <li><a href="#">{{ trans('admin/partials/sidebar.edit_cat') }}</a></li>
                     </ul>
                 </li>
-                
+
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
@@ -50,7 +50,7 @@
                         <span>{{ trans('admin/partials/sidebar.login') }}</span>
                     </a>
                 </li>
-            </ul>            
+            </ul>
         </div>
         <!-- sidebar menu end-->
     </div>

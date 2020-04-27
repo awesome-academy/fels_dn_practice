@@ -12,20 +12,21 @@
                 </header>
                 <div class="panel-body">
                     <div class="position-center">
-                        <form role="form" method="POST" action="#">
+                        <form role="form" method="POST" action="{{ url('categories/'.$categories->id) }}">
+                            {{ csrf_field() }}
+                            {{ method_field('put') }}
                             <div class="form-group">
                                 <label for="title">{{ trans('admin/categories/add_cat.title') }}</label>
-                                <input type="text" class="form-control" id="title" value="">
+                                <input type="text" name="title" class="form-control" id="title" value="{{ $categories->title }}">
                             </div>
                             <div class="form-group">
                                 <label for="desc">{{ trans('admin/categories/add_cat.desc') }}</label>
-                                <textarea style="resize: none;" type="text" class="form-control" id="desc" placeholder="Description"></textarea>
+                                <textarea style="resize: none;" id="desc" type="text" class="form-control" name="desc">{{$categories->desc}}</textarea>
                             </div>
                             <button type="submit" class="btn btn-info">{{ trans('admin/categories/add_cat.btn_submit') }}</button>
                         </form>
                     </div>
                 </div>
-
             </section>
         </div>
     </section>
