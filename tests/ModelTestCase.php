@@ -132,6 +132,7 @@ abstract class ModelTestCase extends TestCase
 
         $this->assertEquals($owner, $relation->getOwnerKey());
     }
+
     protected function assertHasOneRelation($relation, Model $model, Model $related, $key, $owner = null, \Closure $queryCheck = null)
     {
         $this->assertInstanceOf(HasOne::class, $relation);
@@ -144,3 +145,4 @@ abstract class ModelTestCase extends TestCase
         $this->assertEquals($key, $relation->getForeignKeyName());
     }
 }
+

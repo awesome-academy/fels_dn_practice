@@ -19,13 +19,13 @@ class Answers extends Model
         return $this->belongsTo(Words::class);
    }
 
-   public function lession()
+   public function lessions()
    {
-        return $this->belongsTo(Lession::class);
+        return $this->belongsTo(Lessions::class);
    }
 
-   public function choice()
+   public function choices()
    {
-        return $this->belongsTo(Choice::class);
+        return $this->belongsTo(Choices::class);
    }
 }

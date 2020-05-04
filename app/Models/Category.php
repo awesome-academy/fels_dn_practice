@@ -15,11 +15,11 @@ class Category extends Model
 
     public function lessions()
     {
-        return $this->hasOne(Lessions::class);
+        return $this->hasOne(Lessions::class, 'lession_id');
     }
 
     public function words()
     {
-        return $this->hasOne(Words::class);
+        return $this->hasOne(Words::class, 'word_id');
     }
 }

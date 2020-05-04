@@ -4,30 +4,42 @@
 
 @section('body')
 <section id="main-content">
+
     <section class="wrapper">
         <div class="table-agile-info">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    {{ trans('admin/lessions/list_les.title_header') }}
+                    {{ trans('admin/categories/list_cat.title_header') }}
                 </div>
                 <div class="row w3-res-tb">
+                    @if(session('success'))
+                        <div class="alert alert-success">
+                            <p>{{ trans('admin/categories/list_cat.add') }}</p>
+                        </div>
+                    @endif
+                    @if(session('update'))
+                        <div class="alert alert-success">
+                            <p>{{ trans('admin/categories/list_cat.update') }}</p>
+                        </div>
+                    @endif
                     <div class="col-sm-5 m-b-xs">
+                        <button id="" type="button" class="btn btn-default"><a action="{{ route('lessions.create') }}">+</a></button>
                         <select class="input-sm form-control w-sm inline v-middle">
-                            <option value="0">Bulk action</option>
-                            <option value="1">Delete selected</option>
-                            <option value="2">Bulk edit</option>
-                            <option value="3">Export</option>
+                            <option value="0">A-Z</option>
+                            <option value="1">Z-A</option>
                         </select>
-                        <button class="btn btn-sm btn-default">{{ trans('admin/lessions/list_les.filter') }}</button>
+                        <button class="btn btn-sm btn-default">{{ trans('admin/categories/list_cat.filter') }}</button>
                     </div>
                     <div class="col-sm-4">
+
                     </div>
                     <div class="col-sm-3">
-                        <div class="input-group">
-                            <input type="text" class="input-sm form-control" placeholder="Search">
+                        <form class="input-group" action="{{ route('lessions.index') }}" method="GET">
+                            <input type="hidden" name="action" value="search">
+                            <input name="key" type="text" id="input" class="input-sm form-control" placeholder="Search">
                             <span class="input-group-btn">
-            <button class="btn btn-sm btn-default" type="button">{{ trans('admin/lessions/list_les.search') }}!</button>
-          </span>
+                                <button class="btn btn-sm btn-default" type="submit">{{ trans('admin/categories/list_cat.search') }}</button>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -40,48 +52,41 @@
                                         <input type="checkbox"><i></i>
                                     </label>
                                 </th>
-                                <th>{{ trans('admin/lessions/list_les.id') }}</th>
-                                <th>{{ trans('admin/lessions/list_les.cat') }}</th>
-                                <th>{{ trans('admin/lessions/list_les.word') }}</th>
-                                <th>{{ trans('admin/lessions/list_les.result') }}</th>
-                                <th>{{ trans('admin/lessions/list_les.action') }}</th>
+                                <th>{{ trans('admin/categories/list_cat.id') }}</th>
+                                <th>{{ trans('admin/categories/list_cat.title') }}</th>
+                                <th>{{ trans('admin/categories/list_cat.desc') }}</th>
+                                <th>{{ trans('admin/categories/list_cat.action') }}</th>
+                                <th style="width:30px;"></th>
                             </tr>
                         </thead>
+                        @php($i = 0)
+                        @foreach($lession as $lessions)
                         <tbody>
                             <tr>
                                 <td>
                                     <label class="i-checks m-b-none">
                                         <input type="checkbox" name="post[]"><i></i></label>
                                 </td>
-                                <td>1</td>
-                                <td><span class="text-ellipsis">Country</span></td>
-                                <td><span class="text-ellipsis">E-Learning</span></td>
-                                <td><span class="text-ellipsis">E-Learning</span></td>
+                                <td><?php echo ++$i; ?></td>
+                                <td><span class="text-ellipsis">{{$lessions->id}}</span></td>
+                                <td><span class="text-ellipsis">{{$lessions->category_id}}</span></td>
+                                <td><span class="text-ellipsis">{{$lessions->user_id}}</span></td>
+                                <td><span class="text-ellipsis">{{$lessions->result}}</span></td>
                                 <td>
-                                    <a href="" class="active" ui-toggle-class=""><i class="fa fa-check text-success text-active"></i><i class="fa fa-times text-danger text"></i></a>
+                                    <a href="{{ route('lession.edit', $lessions->id) }}" class="active" ui-toggle-class=""><i class="fa fa-pencil-square-o text-info active"></i></a>
+                                    <form action="{{ url("lession/$lessions->id") }}" method="POST">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                        <button type="submit" title="Delete" onclick="return confirm('Bạn có chắc chắn muốn xóa?');" class="btn-option-user"><i class="fa fa-trash text-danger"></i></button>
+                                    </form>
                                 </td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
-                <footer class="panel-footer">
-                    <div class="row">
-
-                        <div class="col-sm-5 text-center">
-                            <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
-                        </div>
-                        <div class="col-sm-7 text-right text-center-xs">
-                            <ul class="pagination pagination-sm m-t-none m-b-none">
-                                <li><a href=""><i class="fa fa-chevron-left"></i></a></li>
-                                <li><a href="">1</a></li>
-                                <li><a href="">2</a></li>
-                                <li><a href="">3</a></li>
-                                <li><a href="">4</a></li>
-                                <li><a href=""><i class="fa fa-chevron-right"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </footer>
+                <div class="pagination-user">
+                </div>
             </div>
         </div>
     </section>
