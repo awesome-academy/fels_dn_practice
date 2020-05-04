@@ -10,5 +10,6 @@ $factory->define(Words::class, function (Faker $faker) {
             return App\Models\Category::inRandomOrder()->first()->id;
         },
         'content' =>$faker->text($maxNbChars = 100),
+        'name' => $faker->word,
     ];
 });
