@@ -16,17 +16,17 @@ class Words extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'category_id');
 
     }
 
     public function answers()
     {
-        return $this->hasOne(Answers::class);
+        return $this->hasOne(Answers::class, 'answer_id');
     }
 
     public function choices()
     {
-        return $this->hasOne(Choices::class);
+        return $this->hasOne(Choices::class, 'choice_id');
     }
 }
