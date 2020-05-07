@@ -16,11 +16,11 @@ class Choices extends Model
 
     public function answers()
     {
-    	return $this->hasOne(Answers::class);
+    	return $this->hasOne(Answers::class, 'answer_id');
     }
 
     public function words()
     {
-    	return $this->belongsTo(Words::class);
+    	return $this->belongsTo(Words::class, 'word_id');
     }
 }

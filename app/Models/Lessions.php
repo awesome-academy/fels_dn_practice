@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Lessions extends Model
@@ -9,7 +9,7 @@ class Lessions extends Model
     protected $table = 'lessions';
 
     protected $fillable = [
-        'category',
+        'category_id',
         'user_id',
         'result',
         'name' ,
@@ -17,16 +17,16 @@ class Lessions extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function categories()
     {
-        return $this->belongsTo(Categories::class);
+        return $this->belongsTo(Category::class,'category_id');
     }
 
     public function answers()
     {
-        return $this->hasOne(Answers::class);
+        return $this->hasOne(Answers::class, 'answer_id');
     }
 }
