@@ -58,3 +58,5 @@ Route::get('/words/all', function (){
 Route::get('/words/edit', function (){
     return view('admin.words.edit');
 });
+
+
