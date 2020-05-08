@@ -71,22 +71,31 @@
                                     </nav>
                                 </div>
                             </div>
-                            <div class="col-xl-3 col-lg-3 d-none d-lg-block">
-                                <div class="log_chat_area d-flex align-items-center">
-                                    <a href="#test-form" class="login popup-with-form">
-                                        <i class="flaticon-user"></i>
-                                        <span>log in</span>
-                                    </a>
-                                    <div class="live_chat_btn">
-                                        <a class="boxed_btn_orange" href="#">
-                                            <i class="fa fa-phone"></i>
-                                            <span>+10 378 467 3672</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="mobile_menu d-block d-lg-none"></div>
+                            <div class="col-xl-3 nav navbar-nav navbar-right">
+                                <ul class="navbar-nav ml-auto">
+                                    <!-- Authentication Links -->
+                                    @guest
+                                        <li class="nav-item">
+                                            <a class="col-xl-3 col-lg-3" href="{{ route('login') }}">Login</a>
+                                        </li>
+                                        @if (Route::has('register'))
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{{ route('register') }}">Register</a>
+                                            </li>
+                                        @endif
+                                    @else
+                                        <li class="d-none d-lg-block main-menu">
+                                       <ul id="navigation">
+                                            <li><b class="cursor-pointer">{{ Auth::user()->name }}</b>
+                                                <ul class="submenu">
+
+                                                    <li><a href="{{ route('logout') }}">Logout</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                   </li>
+                                    @endguest
+                                </ul>
                             </div>
                         </div>
                     </div>
