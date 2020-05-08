@@ -16,6 +16,9 @@ class DatabaseSeeder extends Seeder
             CategoryTableSeeder::class,
             LessionTableSeeder::class,
             WordTableSeeder::class,
+            ChoiceTableSeeder::class,
+            AnswerTableSeeder::class,
+            ActivityTableSeeder::class,
         ]);
     }
 }
