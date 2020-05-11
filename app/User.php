@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Lessions;
+use App\Models\Activities;
+use App\Models\Followers;
 
 class User extends Authenticatable
 {
@@ -29,7 +32,7 @@ class User extends Authenticatable
 
     public function lessions()
     {
-        return $this->hasMany(lessions::class);
+        return $this->hasMany(Lessions::class);
     }
 
     public function activities()

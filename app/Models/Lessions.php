@@ -3,6 +3,7 @@
 namespace App\Models;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class Lessions extends Model
 {
@@ -20,7 +21,7 @@ class Lessions extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function categories()
+    public function category()
     {
         return $this->belongsTo(Category::class,'category_id');
     }
