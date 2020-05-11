@@ -9,8 +9,4 @@
 
     <!-- Endfooter -->
 
-	<!-- form itself end-->
-    
-    @include('partials/form')
-
     <!-- Endform itself end-->
