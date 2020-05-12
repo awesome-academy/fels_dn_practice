@@ -56,12 +56,4 @@ Route::get('/lessions/edit', function (){
 
 /*Words Lessions*/
 
-Route::get('/words/add', function (){
-    return view('admin.words.create');
-});
-Route::get('/words/all', function (){
-    return view('admin.words.show');
-});
-Route::get('/words/edit', function (){
-    return view('admin.words.edit');
-});
+Route::resource('words','WordController');

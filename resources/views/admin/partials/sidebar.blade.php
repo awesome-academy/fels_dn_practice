@@ -39,9 +39,8 @@
                         <span>{{ trans('admin/partials/sidebar.word') }}</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="{{url('words/all')}}">{{ trans('admin/partials/sidebar.list_word') }}</a></li>
-                        <li><a href="{{url('words/add')}}">{{ trans('admin/partials/sidebar.add_word') }}</a></li>
-                        <li><a href="{{url('words/edit')}}">{{ trans('admin/partials/sidebar.edit_word') }}</a></li>
+                        <li><a href="{{route('words.index')}}">{{ trans('admin/partials/sidebar.list_word') }}</a></li>
+                        <li><a href="{{route('words.create')}}">{{ trans('admin/partials/sidebar.add_word') }}</a></li>
                     </ul>
                 </li>
                 <li>

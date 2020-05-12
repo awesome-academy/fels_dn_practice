@@ -23,6 +23,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(
+            \App\Repositories\Word\WordRepositoryInterface::class,
+            \App\Repositories\Word\WordRepository::class
+        );
     }
 }
