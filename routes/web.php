@@ -43,16 +43,7 @@ Route::get('admin/login', function (){
 Route::resource('categories','CategoryController');
 
 /*Admin Lessions*/
-
-Route::get('/lessions/add', function (){
-    return view('admin.lessions.create');
-});
-Route::get('/lessions/all', function (){
-    return view('admin.lessions.show');
-});
-Route::get('/lessions/edit', function (){
-    return view('admin.lessions.edit');
-});
+Route::resource('lessions','LessionsController');
 
 /*Words Lessions*/
 

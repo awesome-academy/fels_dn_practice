@@ -10,4 +10,5 @@ return[
     'action' => 'Action',
     'result' => 'Result',
     'admin' => 'Admin Page',
+    'name' => 'Name',
 ];

@@ -27,7 +27,7 @@
                         <span>{{ trans('admin/partials/sidebar.les') }}</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="{{url('lessions/all')}}">{{ trans('admin/partials/sidebar.list_les') }}</a></li>
+                        <li><a href="{{url('lessions')}}">{{ trans('admin/partials/sidebar.list_les') }}</a></li>
                         <li><a href="{{url('lessions/add')}}">{{ trans('admin/partials/sidebar.add_les') }}</a></li>
                         <li><a href="{{url('lessions/edit')}}">{{ trans('admin/partials/sidebar.edit_les') }}</a></li>
                     </ul>

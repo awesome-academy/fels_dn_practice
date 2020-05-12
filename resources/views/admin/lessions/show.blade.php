@@ -52,15 +52,17 @@
                                         <input type="checkbox"><i></i>
                                     </label>
                                 </th>
-                                <th>{{ trans('admin/categories/list_cat.id') }}</th>
-                                <th>{{ trans('admin/categories/list_cat.title') }}</th>
-                                <th>{{ trans('admin/categories/list_cat.desc') }}</th>
-                                <th>{{ trans('admin/categories/list_cat.action') }}</th>
+                                <th>{{ trans('admin/lessions/list_les.id') }}</th>
+                                <th>{{ trans('admin/lessions/list_les.cat') }}</th>
+                                <th>{{ trans('admin/lessions/list_les.user') }}</th>
+                                <th>{{ trans('admin/lessions/list_les.result') }}</th>
+                                <th>{{ trans('admin/lessions/list_les.name') }}</th>
+                                <th>{{ trans('admin/lessions/list_les.action') }}</th>
                                 <th style="width:30px;"></th>
                             </tr>
-                        </thead>
+                        </thead>    
                         @php($i = 0)
-                        @foreach($lession as $lessions)
+                        @foreach($lessions as $lession)
                         <tbody>
                             <tr>
                                 <td>
@@ -68,13 +70,14 @@
                                         <input type="checkbox" name="post[]"><i></i></label>
                                 </td>
                                 <td><?php echo ++$i; ?></td>
-                                <td><span class="text-ellipsis">{{$lessions->id}}</span></td>
-                                <td><span class="text-ellipsis">{{$lessions->category_id}}</span></td>
-                                <td><span class="text-ellipsis">{{$lessions->user_id}}</span></td>
-                                <td><span class="text-ellipsis">{{$lessions->result}}</span></td>
+                                
+                                <td><span class="text-ellipsis">{{$lession->category_id}}</span></td>
+                                <td><span class="text-ellipsis">{{$lession->user_id}}</span></td>
+                                <td><span class="text-ellipsis">{{$lession->result}}</span></td>
+                                <td><span class="text-ellipsis">{{$lession->name}}</span></td>
                                 <td>
-                                    <a href="{{ route('lession.edit', $lessions->id) }}" class="active" ui-toggle-class=""><i class="fa fa-pencil-square-o text-info active"></i></a>
-                                    <form action="{{ url("lession/$lessions->id") }}" method="POST">
+                                    <a href="{{ route('lessions.edit', $lession->id) }}" class="active"><i class="fa fa-pencil-square-o text-info active"></i></a>
+                                    <form action="{{ url("lessions/$lession->id") }}" method="POST">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
                                         <button type="submit" title="Delete" onclick="return confirm('Bạn có chắc chắn muốn xóa?');" class="btn-option-user"><i class="fa fa-trash text-danger"></i></button>
@@ -86,6 +89,7 @@
                     </table>
                 </div>
                 <div class="pagination-user">
+                    {{$lessions->links()}}
                 </div>
             </div>
         </div>

@@ -24,9 +24,10 @@ class LessionsRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required|unique:categories',
-            'category_id' => 'required',
-            'user_id' => 'required',
+            'name' => 'required|string',
+            'category_id' => 'required|integer',
+            'user_id' => 'required|integer',
+            'result' => 'required|string|max:255',
         ];
     }
 }
