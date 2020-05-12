@@ -67,7 +67,7 @@
                                     <label class="i-checks m-b-none">
                                         <input type="checkbox" name="post[]"><i></i></label>
                                 </td>
-                                <td><?php echo ++$i; ?></td>
+                                <td><span class="text-ellipsis">{{$category->id}}</span></td>
                                 <td><span class="text-ellipsis">{{$category->title}}</span></td>
                                 <td><span class="text-ellipsis">{{$category->desc}}</span></td>
                                 <td>
@@ -84,6 +84,7 @@
                     </table>
                 </div>
                 <div class="pagination-user">
+                    {{$categories->links()}}
                 </div>
             </div>
         </div>

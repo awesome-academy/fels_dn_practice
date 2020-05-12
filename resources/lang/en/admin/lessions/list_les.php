@@ -9,4 +9,5 @@ return[
     'search' => 'Search',
     'action' => 'Action',
     'result' => 'Result',
+    'admin' => 'Admin Page',
 ];
