@@ -26,11 +26,11 @@ Route::group(['namespace' => 'Auth'],function(){
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::group(['namespace' => 'Admin'], function (){
+    Route::get('admin', 'HomeController@index')->name('total');
+});
 
 /*Admin */
-Route::get('admin', function () {
-    return view('admin.home');
-});
 Route::get('admin/register', function (){
     return view('admin.register');
 });
