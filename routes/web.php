@@ -57,3 +57,5 @@ Route::get('/lessions/edit', function (){
 /*Words Lessions*/
 
 Route::resource('words','WordController');
+
+Route::get('/chart', 'ChartController@index');
