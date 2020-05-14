@@ -4,7 +4,7 @@
         <div class="leftside-navigation">
             <ul class="sidebar-menu" id="nav-accordion">
                 <li>
-                    <a class="active" href="index.html">
+                    <a class="active" href="{{route('total')}}">
                         <i class="fa fa-dashboard"></i>
                         <span>{{ trans('admin/partials/sidebar.dash') }}</span>
                     </a>
