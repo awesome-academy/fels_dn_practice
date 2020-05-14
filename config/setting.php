@@ -3,5 +3,5 @@
     return [
         'paginate' => 15,
     ];
- ?>
+?>
  

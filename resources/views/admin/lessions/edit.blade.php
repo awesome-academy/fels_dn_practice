@@ -10,36 +10,37 @@
                 <header class="panel-heading">
                     {{ trans('admin/lessions/edit_les.title_header') }}
                 </header>
+                @if (session('update_success'))
+                    <div class="alert alert-success mb-0 mt-2" role="alert">
+                        {{ session('update_success') }}
+                    </div>
+                @endif
                 <div class="panel-body">
                     <div class="position-center">
-                        <form role="form">
+                        <form role="form" method="POST" action="{{ route('lessions.update', ['lessions' => $lessions->id]) }}">
+                            {{ csrf_field() }}
+                            {{ method_field('put') }}
                             <div class="form-group">
-                                <label for="category" class="">{{ trans('admin/lessions/edit_les.cat') }}</label>
-                                <select class="input-sm form-control">
-                                    <option value="0">Bulk action</option>
-                                    <option value="1">Delete selected</option>
-                                    <option value="2">Bulk edit</option>
-                                    <option value="3">Export</option>
-                                </select>
+                                <label for="title">{{ trans('admin/lessions/list_les.cat') }}</label>
+                                <input type="text" name="category_id" class="form-control" id="title" value="{{ $lessions->category_id }}">
+                            </div>
+                             <div class="form-group">
+                                <label for="title">{{ trans('admin/lessions/list_les.user') }}</label>
+                                <input type="text" name="user_id" class="form-control" id="title" value="{{ $lessions->user_id }}">
                             </div>
                             <div class="form-group">
-                                <label for="category" class="">{{ trans('admin/lessions/edit_les.word') }}:</label>
-                                <select class="input-sm form-control">
-                                    <option value="0">Bulk action</option>
-                                    <option value="1">Delete selected</option>
-                                    <option value="2">Bulk edit</option>
-                                    <option value="3">Export</option>
-                                </select>
+                                <label for="desc">{{ trans('admin/lessions/list_les.result') }}</label>
+                                <textarea style="resize: none;" id="desc" type="text" class="form-control" name="result">{{ $lessions->result }}</textarea>
                             </div>
                             <div class="form-group">
-                                <label for="result">{{ trans('admin/lessions/edit_les.result')}}</label>
-                                <textarea style="resize: none;" type="text" class="form-control" id="result" placeholder="Result"></textarea>
+                                <label for="desc">{{ trans('admin/lessions/list_les.name') }}</label>
+                                <textarea style="resize: none;" id="desc" type="text" class="form-control" name="name">{{ $lessions->name }}</textarea>
                             </div>
-                            <button type="submit" class="btn btn-info">{{ trans('admin/lessions/edit_les.btn_submit')}}</button>
+
+                            <button type="submit" class="btn btn-info">{{ trans('admin/categories/add_cat.btn_submit') }}</button>
                         </form>
                     </div>
                 </div>
-
             </section>
         </div>
     </section>
@@ -51,5 +52,3 @@
 </section>
 
 @endsection
-
-
