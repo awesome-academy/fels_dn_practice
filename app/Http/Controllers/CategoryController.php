@@ -8,21 +8,32 @@ use App\Http\Requests\CategoryRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use App\Repositories\Category\CategoryRepositoryInterface;
 
 class CategoryController extends Controller
 {
+    protected $CateRepo;
+
+    public function __construct(CategoryRepositoryInterface $categories)
+    {
+        $this->CateRepo = $categories;
+    }
+
     public function index()
     {
+
         $filters = request()->only('action', 'key');
+        $take = config('setting.paginate');
         if ($filters && $filters['action'] == 'search') {
             // for search
             $categories = DB::table('categories')
             ->where('title', 'like', '%'.$filters['key'].'%')
             ->orWhere('desc', 'like', '%'.$filters['key'].'%')
-            ->orderBy('id','ASC')->get();
+            ->orderBy('id','ASC')->paginate($take);
         } else {
-            $categories = DB::table('categories')->orderBy('id','ASC')->get();
+            $categories = DB::table('categories')->orderBy('id','ASC')->paginate($take);
         }
+        $listcategories = $this->CateRepo->paginate('id','DESC',$take);
         return view('admin.categories.show', ['categories' => $categories]);
     }
 
@@ -33,7 +44,7 @@ class CategoryController extends Controller
 
     public function store(CategoryRequest $request)
     {
-        $categories = Category::create($request->all());
+        $categories = $this->CateRepo->create($request->all());
         if ($categories) {
             $red = redirect('/categories')->with('success', __('admin.categories.list_cat.add'));
         } else {
@@ -44,6 +55,7 @@ class CategoryController extends Controller
 
     public function show($id)
     {
+        $idcategories = $this->CateRepo->findOrFail($id);
         $category = Category::findOrFail($id);
         return view('admin.categories.show', ['category', $category]);
     }
@@ -56,14 +68,13 @@ class CategoryController extends Controller
 
     public function update(CategoryRequest $request, $id)
     {
-        $categories = Category::findOrFail($id);
-        $categories->Update($request->all());
+        $this->CateRepo->update($id);
         return redirect('categories')->with('update', __('admin.categories.list_cat.update'));
     }
 
     public function destroy($id)
     {
-        $category = Category::destroy($id);
+        $this->CateRepo->delete($id);
         return redirect('categories');
     }
 }

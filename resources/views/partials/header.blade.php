@@ -66,7 +66,7 @@
                                                     <li><a href="#">single-blog</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="#">Activities</a></li>
+                                            <li><a href="">{{ trans('admin/lessions/list_les.admin') }}</a></li>
                                         </ul>
                                     </nav>
                                 </div>
