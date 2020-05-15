@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Repositories\Category\CategoryRepositoryInterface;
+use App\User;
+use Mail;
+use Auth;
 
 class CategoryController extends Controller
 {
@@ -17,6 +20,7 @@ class CategoryController extends Controller
     public function __construct(CategoryRepositoryInterface $categories)
     {
         $this->CateRepo = $categories;
+        $this->middleware('auth');
     }
 
     public function index()
@@ -34,6 +38,7 @@ class CategoryController extends Controller
             $categories = DB::table('categories')->orderBy('id','ASC')->paginate($take);
         }
         $listcategories = $this->CateRepo->paginate('id','DESC',$take);
+
         return view('admin.categories.show', ['categories' => $categories]);
     }
 
@@ -46,6 +51,19 @@ class CategoryController extends Controller
     {
         $categories = $this->CateRepo->create($request->all());
         if ($categories) {
+            $c_id = Auth::guard('web')->user()->id;
+            $c_name = Auth::guard('web')->user()->name;
+            $c_email = Auth::guard('web')->user()->email;
+            /*send mail*/
+            Mail::send('mail.test', [
+                'c_name' => $c_name,
+                'categories' => $categories,
+            ], function($mail) use ($c_email)
+            {
+                $mail->to($c_email);
+                $mail->from('pentapperthanh37@gmail.com');
+                $mail->subject('Send Email After Added!');
+            });
             $red = redirect('/categories')->with('success', __('admin.categories.list_cat.add'));
         } else {
             $red = redirect('/categories/create')->with('danger', __('admin.categories.list_cat.err_add'));

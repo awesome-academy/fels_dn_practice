@@ -1,6 +1,8 @@
 <?php
 
 return[
+    'send_cat' => 'Detail Category',
+    'hi' => 'Hello',
     'title_header' => 'Categories List',
     'id' => 'ID',
     'title' => 'Title',
